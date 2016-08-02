@@ -23,4 +23,12 @@ export default function() {
 
     http://www.ember-cli-mirage.com/docs/v0.2.x/shorthands/
   */
+
+  // Tell our fake API to respond to different URLs
+  this.get('/authors');
+  this.post('/authors');
+  this.get('/authors/:id');
+  this.put('/authors/:id');
+  this.patch('/authors/:id');
+  this.del('/authors/:id');
 }

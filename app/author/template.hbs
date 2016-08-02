@@ -1,1 +1,15 @@
-<h2 class="page-title">Authors</h2>
+<div class="section">
+  <div class="container">
+    <div class="content">
+      <h2 class="page-title">Authors</h2>
+    </div>
+
+    <div class="author-list">
+      {{#each model as |author|}}
+        <div class="author-list__item">
+          {{author.firstName}} {{author.lastName}}
+        </div>
+      {{/each}}
+    </div>
+  </div>
+</div>

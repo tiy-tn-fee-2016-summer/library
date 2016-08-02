@@ -11,3 +11,20 @@ test('visiting /authors shows the author route and a title', function(assert) {
     assert.equal(findWithAssert('.page-title').text().trim(), 'Authors');
   });
 });
+
+test('visiting /authors shows a list of authors', function(assert) {
+  // Create 5 fake authors in our API
+  server.createList('author', 5);
+  visit('/authors');
+
+  andThen(function() {
+    findWithAssert('.author-list');
+    assert.equal(findWithAssert('.author-list__item').length, 5,
+      'There should be an element for each author from the API');
+
+    const firstAuthorEl = findWithAssert('.author-list__item:first');
+    const firstAuthor = server.db.authors.find(1);
+    assert.equal(firstAuthorEl.text().trim(), `${firstAuthor.firstName} ${firstAuthor.lastName}`,
+      'The first author should be filled in');
+  });
+});
