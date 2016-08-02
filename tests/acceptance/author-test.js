@@ -38,3 +38,28 @@ test('user can navigate from main list to new author form', function(assert) {
     assert.equal(findWithAssert('.page-title').text().trim(), 'New Author');
   });
 });
+
+test('user can submit a new author', function(assert) {
+  // Visit the page
+  visit('/authors/new');
+
+  // Fill in the form
+  fillIn('.input-first-name', 'Steven');
+  fillIn('.input-last-name', 'King');
+
+  // Submit the form
+  click('.submit');
+
+  // Wait for ^ to finish
+  andThen(function() {
+    assert.equal(currentURL(), '/authors');
+
+    const firstAuthor = server.db.authors.find(1);
+    assert.equal(firstAuthor.firstName, 'Steven');
+    assert.equal(firstAuthor.lastName, 'King');
+
+    const firstAuthorEl = findWithAssert('.author-list__item:first');
+    assert.equal(firstAuthorEl.text().trim(), 'Steven King',
+      'The first author should be filled in');
+  });
+});
