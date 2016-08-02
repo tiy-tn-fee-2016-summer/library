@@ -1,5 +1,5 @@
 export default function(server) {
-  // server.createList('author', 200);
+  server.createList('author', 200);
 
   /*
     Seed your development database using your factories.

@@ -9,7 +9,12 @@
     <div class="author-list">
       {{#each model as |author|}}
         <div class="author-list__item">
-          {{author.firstName}} {{author.lastName}}
+          <div class="box">
+            <p class="author-name">
+              {{author.firstName}} {{author.lastName}}
+              <button class="button is-danger delete" data-id="{{author.id}}" {{action "destroy" author}}></button>
+            </p>
+          </div>
         </div>
       {{/each}}
     </div>

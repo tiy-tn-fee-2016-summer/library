@@ -22,10 +22,21 @@ test('visiting /authors shows a list of authors', function(assert) {
     assert.equal(findWithAssert('.author-list__item').length, 5,
       'There should be an element for each author from the API');
 
-    const firstAuthorEl = findWithAssert('.author-list__item:first');
+    const firstAuthorEl = findWithAssert('.author-name:first');
     const firstAuthor = server.db.authors.find(1);
     assert.equal(firstAuthorEl.text().trim(), `${firstAuthor.firstName} ${firstAuthor.lastName}`,
       'The first author should be filled in');
+  });
+});
+
+test('user can delete an existing author', function(assert) {
+  server.createList('author', 4);
+  visit('/authors');
+  click('.delete[data-id=2]');
+
+  andThen(function() {
+    assert.equal(find('.author-list__item').length, 3, 'The deleted item should not show in the list');
+    assert.equal(server.db.authors.find(2), null, 'The deleted author should be removed from the API');
   });
 });
 
@@ -58,7 +69,7 @@ test('user can submit a new author', function(assert) {
     assert.equal(firstAuthor.firstName, 'Steven');
     assert.equal(firstAuthor.lastName, 'King');
 
-    const firstAuthorEl = findWithAssert('.author-list__item:first');
+    const firstAuthorEl = findWithAssert('.author-name:first');
     assert.equal(firstAuthorEl.text().trim(), 'Steven King',
       'The first author should be filled in');
   });
