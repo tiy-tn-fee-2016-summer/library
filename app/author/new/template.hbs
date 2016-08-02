@@ -5,11 +5,19 @@
     </div>
 
     {{#simple-form onsubmit=(action "saveAuthor") as |formValues|}}
-      {{input value=formValues.firstName type="text" class="input-first-name"}}
-      {{input value=formValues.lastName type="text" class="input-last-name"}}
+      <label class="label">First Name</label>
+      <div class="control">
+        {{input value=formValues.firstName type="text" class="input input-first-name" placeholder="First Name"}}
+      </div>
 
+      <label class="label">Last Name</label>
+      <div class="control">
+        {{input value=formValues.lastName type="text" class="input input-last-name" placeholder="Last Name"}}
+      </div>
 
-      <button type="submit" class="submit">Save</button>
+      <div class="control">
+        <input type="submit" class="submit button is-primary" value="Save">
+      </div>
     {{/simple-form}}
   </div>
 
