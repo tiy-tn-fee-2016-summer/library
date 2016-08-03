@@ -9,6 +9,7 @@ Router.map(function() {
   this.route('author', { path: '/authors' }, function() {
     this.route('new');
   });
+  this.route('books');
 });
 
 export default Router;
