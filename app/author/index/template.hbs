@@ -8,14 +8,16 @@
 
     <div class="author-list">
       {{#each model as |author|}}
-        <div class="author-list__item">
-          <div class="box">
-            <p class="author-name">
-              {{author.firstName}} {{author.lastName}}
-              <button class="button is-danger delete" data-id="{{author.id}}" {{action "destroy" author}}></button>
-            </p>
+        {{#unless author.isDeleted}}
+          <div class="author-list__item">
+            <div class="box">
+              <p class="author-name">
+                {{author.firstName}} {{author.lastName}}
+                <button class="button is-danger delete" data-id="{{author.id}}" {{action "destroy" author}}></button>
+              </p>
+            </div>
           </div>
-        </div>
+        {{/unless}}
       {{/each}}
     </div>
   </div>
