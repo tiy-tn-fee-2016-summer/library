@@ -13,7 +13,9 @@
             <p class="author-name">
               {{author.firstName}} {{author.lastName}}
             </p>
+            {{#link-to "author.detail" author.id class="author-link"}}See Books{{/link-to}}
             <button class="button is-danger delete author-delete" data-id="{{author.id}}" {{action "destroy" author}}></button>
+
           </div>
         </div>
       {{/each}}

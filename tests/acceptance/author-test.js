@@ -29,6 +29,24 @@ test('visiting /authors shows a list of authors', function(assert) {
   });
 });
 
+test('user can see a link to books for each author in /authors', function(assert) {
+  // "server" is mirage in our tests
+  server.createList('author', 3);
+  server.create('book', {
+    authorId: 1,
+  });
+
+  visit('/authors');
+  click('.author-link');
+
+  andThen(function() {
+    assert.equal(currentURL(), '/authors/1/books');
+    const book = server.db.books.find(1);
+
+    findWithAssert(`:contains(${book.title})`);
+  });
+});
+
 test('user can delete an existing author', function(assert) {
   server.createList('author', 4);
   visit('/authors');
