@@ -1,1 +1,40 @@
 @import 'bulma';
+
+.author-list {
+  display: flex;
+  flex-wrap: wrap;
+  margin: -1rem;
+
+  &__item {
+    margin: 1rem;
+    flex-grow: 1;
+  }
+}
+
+.author-delete {
+  margin-left: 0.5rem;
+  vertical-align: middle;
+}
+
+.author-box {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  &.is-deleting {
+    position: relative;
+    overflow: hidden;
+    opacity: 0.5;
+
+    &::before {
+      content: '';
+      position: absolute;
+      z-index: 1;
+      top: 0;
+      right: 0;
+      bottom: 0;
+      left: 0;
+      background: #e84135;
+      opacity: 0.1;
+    }
+  }
+}
