@@ -26,7 +26,7 @@ test('user can navigate back to all authors page', (assert) => {
   });
 });
 
-test('user can navigate to a new book form from detail page', function (assert) {
+test('user can navigate to a new book form from detail page', (assert) => {
   // Setup (Plan)
   server.create('author');
 
@@ -35,28 +35,27 @@ test('user can navigate to a new book form from detail page', function (assert) 
   click('.new-book');
 
   // Assertion (React)
-  andThen(function () {
+  andThen(() => {
     assert.equal(currentURL(), '/authors/1/books/add');
     assert.equal(currentRouteName(), 'author.detail.add-book');
-    debugger;
 
     assert.equal(findWithAssert('.page-title').text().trim(), 'New Book');
   });
 });
 
-test('user can navigate back from the new book form', function (assert) {
+test('user can navigate back from the new book form', (assert) => {
   server.create('author');
 
   visit('/authors/1/books/add');
   click('.back');
 
-  andThen(function () {
+  andThen(() => {
     assert.equal(currentURL(), '/authors/1/books');
     assert.equal(currentRouteName(), 'author.detail.index');
   });
 });
 
-test('user can submit a form to create a new book', function (assert) {
+test('user can submit a form to create a new book', (assert) => {
   // Setup
   server.create('author');
 
