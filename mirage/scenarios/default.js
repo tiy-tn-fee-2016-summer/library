@@ -1,11 +1,11 @@
 import { faker } from 'ember-cli-mirage';
 
-export default function(server) {
+export default function (server) {
   server.createList('author', 200);
-  server.createList('book', 4, {authorId: 1});
+  server.createList('book', 4, { authorId: 1 });
   server.createList('book', 150, {
     authorId() {
-      return faker.random.number({min: 1, max: 200});
+      return faker.random.number({ min: 1, max: 200 });
     },
   });
 
