@@ -5,7 +5,7 @@ moduleFor('route:author/new', 'Unit | Route | author/new', {
   // needs: ['controller:foo']
 });
 
-test('it exists', function(assert) {
-  let route = this.subject();
+test('it exists', function (assert) {
+  const route = this.subject();
   assert.ok(route);
 });

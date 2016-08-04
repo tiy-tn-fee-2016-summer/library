@@ -3,11 +3,11 @@ import moduleForAcceptance from 'library/tests/helpers/module-for-acceptance';
 
 moduleForAcceptance('Acceptance | books');
 
-test('user can see details for an author', function(assert) {
-  server.create('author')
+test('user can see details for an author', (assert) => {
+  server.create('author');
   visit('/authors/1/books');
 
-  andThen(function() {
+  andThen(() => {
     assert.equal(currentRouteName(), 'author.detail.index');
 
     const author = server.db.authors.find(1);
@@ -16,17 +16,17 @@ test('user can see details for an author', function(assert) {
   });
 });
 
-test('user can navigate back to all authors page', function (assert) {
+test('user can navigate back to all authors page', (assert) => {
   server.create('author');
   visit('/authors/1/books');
   click('.back');
 
-  andThen(function() {
+  andThen(() => {
     assert.equal(currentURL(), '/authors');
   });
 });
 
-test('user can navigate to a new book form from detail page', function(assert) {
+test('user can navigate to a new book form from detail page', function (assert) {
   // Setup (Plan)
   server.create('author');
 
@@ -35,7 +35,7 @@ test('user can navigate to a new book form from detail page', function(assert) {
   click('.new-book');
 
   // Assertion (React)
-  andThen(function() {
+  andThen(function () {
     assert.equal(currentURL(), '/authors/1/books/add');
     assert.equal(currentRouteName(), 'author.detail.add-book');
     debugger;
@@ -44,19 +44,19 @@ test('user can navigate to a new book form from detail page', function(assert) {
   });
 });
 
-test('user can navigate back from the new book form', function(assert) {
+test('user can navigate back from the new book form', function (assert) {
   server.create('author');
 
   visit('/authors/1/books/add');
   click('.back');
 
-  andThen(function() {
+  andThen(function () {
     assert.equal(currentURL(), '/authors/1/books');
     assert.equal(currentRouteName(), 'author.detail.index');
   });
 });
 
-test('user can submit a form to create a new book', function(assert) {
+test('user can submit a form to create a new book', function (assert) {
   // Setup
   server.create('author');
 

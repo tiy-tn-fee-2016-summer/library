@@ -13,5 +13,5 @@ export default Factory.extend({
 
   isDigital() {
     return faker.random.boolean();
-  }
+  },
 });
