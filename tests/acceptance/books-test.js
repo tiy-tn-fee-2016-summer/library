@@ -55,3 +55,20 @@ test('user can navigate back from the new book form', function(assert) {
     assert.equal(currentRouteName(), 'author.detail.index');
   });
 });
+
+test('user can submit a form to create a new book', function(assert) {
+  // Setup
+  server.create('author');
+
+  // Action
+  visit('/authors/1/books/add');
+  fillIn('input.book-title', 'Fargo');
+  fillIn('input.book-year', '1996');
+  click('input.book-digital');
+  click('.submit');
+
+  andThen(() => {
+    assert.equal(currentRouteName(), 'author.detail.index');
+    assert.equal(currentURL(), '/authors/1/books');
+  });
+});

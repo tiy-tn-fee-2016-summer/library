@@ -3,3 +3,10 @@
 {{#link-to "author.detail.index" class="back button"}}
   Back
 {{/link-to}}
+
+{{#simple-form onsubmit=(action "submitBook") as |form|}}
+  {{input class="book-title"}}
+  {{input class="book-year"}}
+  {{input type="checkbox" class="book-digital"}}
+  <button class="button is-primary submit">Save</button>
+{{/simple-form}}
