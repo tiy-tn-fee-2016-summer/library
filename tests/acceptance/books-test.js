@@ -3,11 +3,11 @@ import moduleForAcceptance from 'library/tests/helpers/module-for-acceptance';
 
 moduleForAcceptance('Acceptance | books');
 
-test('user can see details for an author', function(assert) {
-  server.create('author')
+test('user can see details for an author', (assert) => {
+  server.create('author');
   visit('/authors/1/books');
 
-  andThen(function() {
+  andThen(() => {
     assert.equal(currentRouteName(), 'author.detail');
 
     const author = server.db.authors.find(1);
@@ -16,12 +16,12 @@ test('user can see details for an author', function(assert) {
   });
 });
 
-test('user can navigate back to all authors page', function (assert) {
-  server.create('author')
+test('user can navigate back to all authors page', (assert) => {
+  server.create('author');
   visit('/authors/1/books');
   click('.back');
 
-  andThen(function() {
+  andThen(() => {
     assert.equal(currentURL(), '/authors');
   });
 });

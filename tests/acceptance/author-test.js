@@ -3,21 +3,21 @@ import moduleForAcceptance from 'library/tests/helpers/module-for-acceptance';
 
 moduleForAcceptance('Acceptance | author');
 
-test('visiting /authors shows the author route and a title', function(assert) {
+test('visiting /authors shows the author route and a title', (assert) => {
   visit('/authors');
 
-  andThen(function() {
+  andThen(() => {
     assert.equal(currentRouteName(), 'author.index');
     assert.equal(findWithAssert('.page-title').text().trim(), 'Authors');
   });
 });
 
-test('visiting /authors shows a list of authors', function(assert) {
+test('visiting /authors shows a list of authors', (assert) => {
   // Create 5 fake authors in our API
   server.createList('author', 5);
   visit('/authors');
 
-  andThen(function() {
+  andThen(() => {
     findWithAssert('.author-list');
     assert.equal(findWithAssert('.author-list__item').length, 5,
       'There should be an element for each author from the API');
@@ -29,7 +29,7 @@ test('visiting /authors shows a list of authors', function(assert) {
   });
 });
 
-test('user can see a link to books for each author in /authors', function(assert) {
+test('user can see a link to books for each author in /authors', (assert) => {
   // "server" is mirage in our tests
   server.createList('author', 3);
   server.create('book', {
@@ -39,7 +39,7 @@ test('user can see a link to books for each author in /authors', function(assert
   visit('/authors');
   click('.author-link');
 
-  andThen(function() {
+  andThen(() => {
     assert.equal(currentURL(), '/authors/1/books');
     const book = server.db.books.find(1);
 
@@ -47,28 +47,30 @@ test('user can see a link to books for each author in /authors', function(assert
   });
 });
 
-test('user can delete an existing author', function(assert) {
+test('user can delete an existing author', (assert) => {
   server.createList('author', 4);
   visit('/authors');
   click('.delete[data-id=2]');
 
-  andThen(function() {
-    assert.equal(find('.author-list__item').length, 3, 'The deleted item should not show in the list');
-    assert.equal(server.db.authors.find(2), null, 'The deleted author should be removed from the API');
+  andThen(() => {
+    assert.equal(find('.author-list__item').length, 3,
+      'The deleted item should not show in the list');
+    assert.equal(server.db.authors.find(2), null,
+      'The deleted author should be removed from the API');
   });
 });
 
-test('user can navigate from main list to new author form', function(assert) {
+test('user can navigate from main list to new author form', (assert) => {
   visit('/authors');
   click('.new-link');
 
-  andThen(function() {
+  andThen(() => {
     assert.equal(currentURL(), '/authors/new');
     assert.equal(findWithAssert('.page-title').text().trim(), 'New Author');
   });
 });
 
-test('user can submit a new author', function(assert) {
+test('user can submit a new author', (assert) => {
   // Visit the page
   visit('/authors/new');
 
@@ -80,7 +82,7 @@ test('user can submit a new author', function(assert) {
   click('.submit');
 
   // Wait for ^ to finish
-  andThen(function() {
+  andThen(() => {
     assert.equal(currentURL(), '/authors');
 
     const firstAuthor = server.db.authors.find(1);

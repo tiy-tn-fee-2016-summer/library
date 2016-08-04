@@ -2,11 +2,11 @@ import { moduleForModel, test } from 'ember-qunit';
 
 moduleForModel('author', 'Unit | Model | author', {
   // Specify the other units that are required for this test.
-  needs: ['model:book']
+  needs: ['model:book'],
 });
 
-test('it exists', function(assert) {
-  let model = this.subject();
+test('it exists', function (assert) {
+  const model = this.subject();
   // let store = this.store();
   assert.ok(!!model);
 });

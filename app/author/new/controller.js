@@ -7,11 +7,9 @@ export default Ember.Controller.extend({
       // Create and Save an Author
       this.store.createRecord('author', formValues)
         .save().then(() => {
-
         // Redirect
-        this.transitionToRoute('author.index');
-      });
-
+          this.transitionToRoute('author.index');
+        });
     },
   },
 });
