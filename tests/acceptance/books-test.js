@@ -38,5 +38,8 @@ test('user can navigate to a new book form from detail page', function(assert) {
   andThen(function() {
     assert.equal(currentURL(), '/authors/1/books/add');
     assert.equal(currentRouteName(), 'author.detail.add-book');
+    debugger;
+
+    assert.equal(findWithAssert('.page-title').text().trim(), 'New Book');
   });
 });

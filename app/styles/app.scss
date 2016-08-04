@@ -1,5 +1,9 @@
 @import 'bulma';
 
+.is-outlet {
+  background: rgba(green, 0.2);
+}
+
 .author-list {
   display: flex;
   flex-wrap: wrap;
