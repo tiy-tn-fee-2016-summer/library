@@ -4,9 +4,21 @@
   Back
 {{/link-to}}
 
-{{#simple-form onsubmit=(action "submitBook") as |form|}}
-  {{input class="book-title"}}
-  {{input class="book-year"}}
-  {{input type="checkbox" class="book-digital"}}
-  <button class="button is-primary submit">Save</button>
+{{#simple-form onsubmit=(action "submitBook" model) as |form|}}
+  <div class="control">
+    <label for="book-title" class="label">Title</label>
+    {{input id="book-title" type="text" value=form.title class="book-title input"}}
+  </div>
+  <div class="control">
+    <label for="book-year" class="label">Year</label>
+    {{input id="book-year" type="text" value=form.year class="book-year input"}}
+  </div>
+  <div class="control">
+    <label for="book-digital" class="checkbox">Digital Copy
+    {{input id="book-digital" type="checkbox" checked=form.isDigital class="book-digital checkbox"}}
+    </label>
+  </div>
+  <div class="control">
+    <input type="submit" class="submit button is-primary" value="Save">
+  </div>
 {{/simple-form}}

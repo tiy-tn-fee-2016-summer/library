@@ -70,5 +70,11 @@ test('user can submit a form to create a new book', function(assert) {
   andThen(() => {
     assert.equal(currentRouteName(), 'author.detail.index');
     assert.equal(currentURL(), '/authors/1/books');
+
+    const savedBook = server.db.books.find(1);
+    assert.equal(savedBook.title, 'Fargo');
+    assert.equal(savedBook.year, '1996');
+    assert.equal(savedBook.isDigital, true);
+    assert.equal(savedBook.authorId, 1);
   });
 });
