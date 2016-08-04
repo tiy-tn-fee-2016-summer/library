@@ -43,3 +43,15 @@ test('user can navigate to a new book form from detail page', function(assert) {
     assert.equal(findWithAssert('.page-title').text().trim(), 'New Book');
   });
 });
+
+test('user can navigate back from the new book form', function(assert) {
+  server.create('author');
+
+  visit('/authors/1/books/add');
+  click('.back');
+
+  andThen(function() {
+    assert.equal(currentURL(), '/authors/1/books');
+    assert.equal(currentRouteName(), 'author.detail.index');
+  });
+});
