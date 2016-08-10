@@ -24,6 +24,11 @@ module.exports = function (environment) {
     },
   };
 
+  ENV['ember-simple-auth-token'] = {
+    serverTokenEndpoint: `${ENV.DS.host}/${ENV.DS.namespace}/token-auth`,
+    tokenPropertyName: 'access_token',
+  };
+
   if (environment === 'development') {
     ENV['ember-cli-mirage'] = {
       enabled: false,

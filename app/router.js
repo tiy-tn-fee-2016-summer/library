@@ -15,6 +15,7 @@ Router.map(function () {
   this.route('books');
 
   this.route('register');
+  this.route('login');
   return undefined;
 });
 
