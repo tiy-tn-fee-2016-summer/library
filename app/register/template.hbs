@@ -1,0 +1,11 @@
+{{outlet}}
+<h2 class="title">Register</h2>
+
+{{#simple-form onsubmit=(action "registerUser") as |inputs|}}
+  <label for="email">email</label>
+    {{input placeholder="email" value=inputs.email}}
+  <label for="password">password</label>
+  {{input type="password" placeholder="password" value=inputs.password}}
+
+  <button type="submit">Submit</button>
+{{/simple-form}}
